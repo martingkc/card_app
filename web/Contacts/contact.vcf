@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:2.1
+N:None;None;;
+FN:None;None
+ORG:None
+TITLE:None
+PHOTO;GIF:http://www.example.com/dir_photos/my_photo.gif
+TEL;WORK;VOICE:None
+EMAIL:None
+REV:20080424T195243Z
+END:VCARD

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a1f44;
+      /* Dark blue background */
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      padding-top: 80px;
+      /* Ensure body doesn't go under the fixed app bar */
+    }
+
+    .app-bar {
+      width: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      /* Fix the bar to the top */
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      /* Ensure the bar stays above other content */
+    }
+
+    .logo {
+      font-family: Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      color: black;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      border: 2px solid black;
+      text-transform: uppercase;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 0;
+      /* Sharp edges */
+    }
+
+    .register-btn {
+      background-color: black;
+      color: white;
+    }
+
+    .login-btn {
+      background-color: white;
+      color: black;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      height: 100%;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      right: -250px;
+      /* Hidden by default (slides in from the right) */
+      transition: 0.3s;
+      z-index: 2000;
+      /* Above all other content */
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .sidebar .button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-close {
+      font-size: 24px;
+      cursor: pointer;
+      align-self: flex-end;
+    }
+
+    /* Mobile-specific styles */
+    .hamburger-menu {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .mobile-buttons {
+      display: none;
+      /* Hidden by default */
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    /* Profile Card */
+    .container {
+      background-color: rgba(255, 255, 255, 0.6);
+      /* Semi-transparent white background */
+      width: 100%;
+      max-width: 400px;
+      /* Maximum card width */
+      padding: 20px;
+      border-radius: 0px;
+      /* Sharp edges */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .profile-img-container {
+      position: relative;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+
+    .profile-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .profile-description {
+      font-size: 16px;
+      color: #707070;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: flex-start;
+      /* Align items to the left */
+      align-items: center;
+      padding: 12px;
+      border: 1px solid black;
+      /* Black border */
+      margin-bottom: 10px;
+      background-color: #fff;
+      border-radius: 0px;
+      /* Sharp edges */
+    }
+
+    .list-item i {
+      margin-right: 10px;
+    }
+
+    .icon-container {
+      display: flex;
+      align-items: center;
+    }
+
+    a {
+      text-decoration: none;
+      /* Remove underline */
+      color: black;
+      /* Remove default blue color */
+    }
+
+    a:hover {
+      color: grey;
+      /* Optional: Add hover effect */
+    }
+
+    /* Adaptive design */
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        /* Adjust width for smaller screens */
+      }
+
+      .hamburger-menu {
+        display: block;
+        /* Show hamburger menu on smaller screens */
+      }
+
+      .buttons {
+        display: none;
+        /* Hide the buttons on smaller screens */
+      }
+
+      .app-bar {
+        padding: 15px 20px;
+        /* Increase the height of the app bar on mobile */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- App Bar -->
+  <div class="app-bar">
+    <div class="logo">Logo</div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i> <!-- FontAwesome Hamburger Icon -->
+    </div>
+
+    <!-- Buttons (Register & Login) -->
+    <div class="buttons">
+      <div class="button register-btn">Register</div>
+      <div class="button login-btn">Login</div>
+    </div>
+  </div>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar" id="sidebar">
+    <span class="sidebar-close" onclick="toggleSidebar()">&times;</span>
+    <div class="button register-btn">Register</div>
+    <div class="button login-btn">Login</div>
+  </div>
+
+  <!-- Hidden Register/Login for Mobile -->
+  <div class="mobile-buttons" id="mobile-buttons">
+    <div class="button register-btn">Register</div>
+    <div class="button login-btn">Login</div>
+  </div>
+
+  <div class="container">
+    <!-- Profile Picture Section -->
+    <div class="profile-img-container">
+      <img src="{{ profile_picture_url }}" alt="Profile Picture" class="profile-img">
+    </div>
+
+    <!-- Profile Name and Description -->
+    <div class="profile-name">{{ user.name }} {{ user.surname }}</div>
+    <div class="profile-description">{{ user.role }} at {{ user.company }}</div>
+
+    <!-- List Items -->
+    {% for item in contacts %}
+    <a href="{{ item.link }}">
+      <div class="list-item">
+        <div class="icon-container">
+
+          {% if item.type.name == 'WhatsApp' %}
+          <i class="fa-brands fa-whatsapp"></i>
+          {% elif item.type.name == 'Instagram' %}
+          <i class="fa-brands fa-instagram"></i>
+          {% elif item.type.name == 'Contact' %}
+          <i class="fa fa-address-book"></i>
+          {% elif item.type.name == 'LinkedIn' %}
+          <i class="fa-brands fa-linkedin"></i>
+          {% elif item.type.name == 'Website' %}
+          <i class="fa fa-globe"></i>
+          {% elif item.type.name == 'Facebook' %}
+          <i class="fa-brands fa-facebook"></i>
+          {% endif %}
+          <div>{{ item.type.name }}</div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <!-- FontAwesome Icons -->
+  <script src="https://kit.fontawesome.com/be622b52df.js" crossorigin="anonymous"></script>
+
+  <!-- JavaScript to toggle the sidebar -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar.style.right === '0px') {
+        sidebar.style.right = '-250px';
+      } else {
+        sidebar.style.right = '0px';
+      }
+    }
+  </script>
+
+</body>
+
+</html>

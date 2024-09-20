@@ -1,0 +1,13 @@
+
+const String api_base_url = 'http://localhost:4999/api/';
+const String register = 'add_user';
+const String login_endpoint = 'token';
+const String users_endpoint = 'users'; 
+const String contact_info = 'contact_info';
+const String files = 'files';
+const String change_profile_picture = 'change_profile_picture'; 
+const String update_card = 'update_card';
+const String following = 'following';
+const String follow = 'follow'; 
+const String unfollow = 'unfollow'; 
+const String search = 'search';
