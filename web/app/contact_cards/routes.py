@@ -20,7 +20,7 @@ def add_contact_cards():
         link = item['link']
         if (platform.name == 'Contact'):
             create_vcf(g.user)
-            link = current_app.config['DOMAIN'] + "/api/vcf/" + g.user.username
+            link = current_app.config['DOMAIN'] + "/api/vcf/" + g.user.username+'.vcf'
         contact_item = ContactItems(
             username=g.user.username, type=platform, link=link)
         db.session.add(contact_item)

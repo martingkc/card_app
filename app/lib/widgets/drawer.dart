@@ -40,8 +40,8 @@ class AppDrawer extends StatelessWidget {
             title: Text('Inbox'),
             onTap: () {
               // Handle Inbox action
-              Get.snackbar('Navigation', 'Navigating to Inbox');
               Navigator.pop(context); // Close the drawer
+              Get.toNamed('/inbox');
             },
           ),
           ListTile(

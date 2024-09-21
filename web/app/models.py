@@ -48,9 +48,17 @@ class Messages(db.Model):
     issuer = db.Column(db.String(32), primary_key=True)
     recipient = db.Column(db.String(32), primary_key=True)
     timestamp = db.Column(
-        DateTime, default=datetime.datetime.now, primary_key=True)
+        db.Integer, default=time.time_ns(), primary_key=True)
     body = db.Column(db.String(1024), primary_key=True)
     user_is_authenticated = db.Column(db.Boolean)
+
+    def serialize(self): 
+        return {
+            'issuer': self.issuer,
+            'recipient': self.recipient, 
+            'timestamp': self.timestamp,
+            'body':self.body
+        }
 
     
 

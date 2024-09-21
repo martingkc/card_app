@@ -21,7 +21,7 @@ class AuthenticationController extends GetxController {
 
   RxString bearerToken = ''.obs;
   DateTime? tokenCreationTime;
-  int tokenTTL = 600; // Token time to live in seconds
+  int tokenTTL = ttl; // Token time to live in seconds
 
   final String _tokenKey = 'bearerToken';
   final String _tokenCreationKey = 'tokenCreationTime';

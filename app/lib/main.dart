@@ -4,12 +4,15 @@ import 'package:brachitek/login_register/register_page_1.dart';
 import 'package:brachitek/login_register/register_page_2.dart';
 import 'package:brachitek/login_register/register_page_3.dart';
 import 'package:brachitek/login_register/welcome_page.dart';
+import 'package:brachitek/main_pages/inbox_page.dart';
+import 'package:brachitek/main_pages/message_page.dart';
 import 'package:brachitek/main_pages/other_user_card_page.dart';
 import 'package:brachitek/main_pages/contacts_page.dart';
 import 'package:brachitek/main_pages/controllers/authentication_controller.dart';
 import 'package:brachitek/main_pages/my_card_page.dart';
 import 'package:brachitek/main_pages/providers/card_provider.dart';
 import 'package:brachitek/main_pages/providers/follower_provider.dart';
+import 'package:brachitek/main_pages/providers/message_provider.dart';
 import 'package:brachitek/main_pages/providers/user_provider.dart';
 import 'package:brachitek/middlewares/globalMiddleware.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +70,19 @@ class MyApp extends StatelessWidget {
             binding: BindingsBuilder(() {
               Get.lazyPut(() => UserProvider());
               Get.lazyPut(() => CardProvider());
+              Get.lazyPut(() => MessageProvider());
+            })),
+        GetPage(
+            name: '/message',
+            page: () => MessagePage(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => MessageProvider());
+            })),
+        GetPage(
+            name: '/inbox',
+            page: () => InboxPage(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => MessageProvider());
             }))
       ],
     );

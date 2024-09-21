@@ -85,7 +85,6 @@ class RegisterPage3 extends StatelessWidget {
               ),
               Spacer(),
 
-              // Finish Button
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -97,39 +96,42 @@ class RegisterPage3 extends StatelessWidget {
                       borderRadius: BorderRadius.zero,
                     ),
                   ),
-                  onPressed: () {
-                    // Handle finish registration action
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Finish',
-                    style: TextStyle(fontSize: 18,color: Colors.white, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
               SizedBox(
-                      height: 50,
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.black, width: 1.5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.zero, // Square edges
-                          ),
-                        ),
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: Text(
-                          'Back',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
+                height: 10,
+              ),
+              SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Colors.black, width: 1.5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero, // Square edges
                     ),
+                  ),
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text(
+                    'Back',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

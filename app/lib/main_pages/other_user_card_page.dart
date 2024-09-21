@@ -1,4 +1,5 @@
 import 'package:brachitek/main_pages/controllers/follower_card_controller.dart';
+import 'package:brachitek/main_pages/message_page.dart';
 import 'package:brachitek/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -93,8 +94,7 @@ class UserCardPage extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        // Implement send message functionality
-                        Get.snackbar('Message', 'Send message to ${controller.user.value?.Name ?? ""}');
+                       Get.to(MessagePage(), arguments: [controller.user.value]); 
                       },
                       icon: Icon(Icons.message, color: Colors.black),
                       style: ElevatedButton.styleFrom(

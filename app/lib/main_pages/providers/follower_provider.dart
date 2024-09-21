@@ -79,7 +79,6 @@ class ContactProvider extends GetConnect {
       var body = response.body;
       List<User> matchesByName = [];
       List<User> matchesByUsername = [];
-      print(body);
       for (var user in body['fullname_matches']) {
         matchesByName.add(User(
             Username: user['username'],
