@@ -1,8 +1,11 @@
 import 'package:brachitek/login_register/controllers/login_controller.dart';
+import 'package:brachitek/login_register/controllers/registration_controller.dart';
 import 'package:brachitek/login_register/login_page.dart';
 import 'package:brachitek/login_register/register_page_1.dart';
 import 'package:brachitek/login_register/register_page_2.dart';
 import 'package:brachitek/login_register/register_page_3.dart';
+import 'package:brachitek/login_register/register_page_4.dart';
+import 'package:brachitek/login_register/register_page_5.dart';
 import 'package:brachitek/login_register/welcome_page.dart';
 import 'package:brachitek/main_pages/inbox_page.dart';
 import 'package:brachitek/main_pages/message_page.dart';
@@ -47,9 +50,37 @@ class MyApp extends StatelessWidget {
               Get.lazyPut<LoginController>(() => LoginController());
             })),
         GetPage(name: '/welcome', page: () => WelcomeScreen()),
-        GetPage(name: '/register_1', page: () => RegisterPage1()),
-        GetPage(name: '/register_2', page: () => RegisterPage2()),
-        GetPage(name: '/register_3', page: () => RegisterPage3()),
+        GetPage(
+            name: '/register_1',
+            page: () => RegisterPage1(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => UserProvider());
+              Get.lazyPut(() => RegistrationController());
+            })),
+        GetPage(
+            name: '/register_2',
+            page: () => RegisterPage2(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => RegistrationController());
+            })),
+            GetPage(
+            name: '/register_3',
+            page: () => RegisterPage3(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => RegistrationController());
+            })),
+        GetPage(
+            name: '/register_4',
+            page: () => RegisterPage4(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => RegistrationController());
+            })),
+        GetPage(
+            name: '/register_5',
+            page: () => RegisterPage5(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => RegistrationController());
+            })),
         GetPage(
             name: '/my_card',
             page: () => MyCardScreen(),

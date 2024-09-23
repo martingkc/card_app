@@ -13,14 +13,14 @@ class UserProvider extends GetConnect {
     print(response.body.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       return User(
-          Username: response.body['username'],
-          Name: response.body['name'] ?? "Jane",
-          Surname: response.body['surname'] ?? "Doe",
-          Email: response.body['mail'] ?? "janedoe@mail.com",
-          Company: response.body['username'] ?? "Dunder Mifflin",
-          Role: response.body['role'] ?? "Assistant to the regional manager",
-          ProfilePicture: response.body['profile_picture'],
-          PhoneNumber: /* response.body['number'] ?? */
+          username: response.body['username'],
+          name: response.body['name'] ?? "Jane",
+          surname: response.body['surname'] ?? "Doe",
+          email: response.body['mail'] ?? "janedoe@mail.com",
+          company: response.body['username'] ?? "Dunder Mifflin",
+          role: response.body['role'] ?? "Assistant to the regional manager",
+          profilePicture: response.body['profile_picture'],
+          phoneNumber: /* response.body['number'] ?? */
               ''); // TODO : number is not within the available fields yet, nor it will be a nullable value
     } else {
       return null;
@@ -48,5 +48,14 @@ class UserProvider extends GetConnect {
       return false;
     }
     return true;
+  }
+
+  Future<int?> addUser(User user, String password) async {
+    var body = user.serialize();
+    body.addAll({'password': password});
+
+    var response = await put("$api_base_url$register", body);
+
+    return response.statusCode;
   }
 }

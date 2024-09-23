@@ -78,8 +78,8 @@ class FollowersPage extends StatelessWidget {
                   // Sort the contacts alphabetically
                   List<User> sortedList = List<User>.from(controller.followedUsers)
                     ..sort((a, b) {
-                      String nameA = '${a.Name ?? ''} ${a.Surname ?? ''}';
-                      String nameB = '${b.Name ?? ''} ${b.Surname ?? ''}';
+                      String nameA = '${a.name ?? ''} ${a.surname ?? ''}';
+                      String nameB = '${b.name ?? ''} ${b.surname ?? ''}';
                       return nameA.compareTo(nameB);
                     });
 
@@ -116,23 +116,23 @@ class FollowersPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: user.ProfilePicture!.isNotEmpty
-              ? NetworkImage("$api_base_url$files/${user.ProfilePicture!}")
+          backgroundImage: user.profilePicture!.isNotEmpty
+              ? NetworkImage("$api_base_url$files/${user.profilePicture!}")
               : null,
-          child: user.ProfilePicture == null || user.ProfilePicture!.isEmpty
+          child: user.profilePicture == null || user.profilePicture!.isEmpty
               ? Icon(Icons.person, size: 30, color: Colors.black)
               : null,
           backgroundColor: Colors.grey[200],
         ),
         title: Text(
-          '${user.Name ?? ''} ${user.Surname ?? ''}',
+          '${user.name ?? ''} ${user.surname ?? ''}',
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
           ),
         ),
         subtitle: Text(
-          '${user.Company ?? ''}',
+          '${user.company ?? ''}',
           style: TextStyle(
             color: Colors.grey,
             fontSize: 14,
@@ -202,10 +202,10 @@ class FollowersPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: user.ProfilePicture != null && user.ProfilePicture!.isNotEmpty
-              ? NetworkImage("$api_base_url$files/${user.ProfilePicture!}")
+          backgroundImage: user.profilePicture != null && user.profilePicture!.isNotEmpty
+              ? NetworkImage("$api_base_url$files/${user.profilePicture!}")
               : null,
-          child: user.ProfilePicture!.isEmpty
+          child: user.profilePicture!.isEmpty
               ? Icon(Icons.person, size: 30, color: Colors.black)
               : null,
           backgroundColor: Colors.grey[200],
@@ -213,18 +213,18 @@ class FollowersPage extends StatelessWidget {
         title: Row(
           children: [
             Text(
-              '${user.Name ?? ''} ${user.Surname ?? ''}',
+              '${user.name ?? ''} ${user.surname ?? ''}',
               style: TextStyle(color: Colors.black, fontSize: 18),
             ),
             SizedBox(width: 8),
             Text(
-              '@${user.Username ?? ''}',
+              '@${user.username ?? ''}',
               style: TextStyle(color: Colors.grey, fontSize: 14),
             ),
           ],
         ),
         subtitle: Text(
-          '${user.Company ?? ''}',
+          '${user.company ?? ''}',
           style: TextStyle(
             color: Colors.grey,
             fontSize: 14,

@@ -24,12 +24,12 @@ class FollowerCardController extends GetxController {
     dynamic argumentData = Get.arguments;
     user.value = argumentData[0];
     var followers = await contactProvider.getFollowers();
-    if (followers != null && followers.map((e) => e.Username).toList().contains(user.value!.Username)) {
+    if (followers != null && followers.map((e) => e.username).toList().contains(user.value!.username)) {
       isFollowing.value = true;
     }
-    user.value?.ProfilePicture == ''
+    user.value?.profilePicture == ''
         ? imagePath.value = ''
-        : imagePath.value = "$api_base_url$files/${user.value?.ProfilePicture}";
+        : imagePath.value = "$api_base_url$files/${user.value?.profilePicture}";
 
     await refreshPage();
     print(profileImagePath.value);
@@ -52,7 +52,7 @@ class FollowerCardController extends GetxController {
 
   Future<void> refreshPage() async {
     isLoading.value = true;
-    items.value = await cardProvider.getCards(user.value!.Username) ??
+    items.value = await cardProvider.getCards(user.value!.username) ??
         <Map<Platforms, String>>[];
 
     isLoading.value = false;

@@ -20,14 +20,14 @@ class ContactProvider extends GetConnect {
     if (response.statusCode == 200) {
       for (var element in response.body) {
         ret.add(User(
-            Username: element['username'] ?? '',
-            Name: element['name'] ?? '',
-            Surname: element['surname'] ?? '',
-            Email: element['email'] ?? '',
-            Company: element['company'] ?? '',
-            Role: element['role'] ?? '',
-            PhoneNumber: element['phoneNumber'] ?? '',
-            ProfilePicture: element['profilePicture'] ?? ''));
+            username: element['username'] ?? '',
+            name: element['name'] ?? '',
+            surname: element['surname'] ?? '',
+            email: element['email'] ?? '',
+            company: element['company'] ?? '',
+            role: element['role'] ?? '',
+            phoneNumber: element['phoneNumber'] ?? '',
+            profilePicture: element['profilePicture'] ?? ''));
       }
       return ret;
     } else {
@@ -81,25 +81,25 @@ class ContactProvider extends GetConnect {
       List<User> matchesByUsername = [];
       for (var user in body['fullname_matches']) {
         matchesByName.add(User(
-            Username: user['username'],
-            Company: user['company'],
-            Name: user['name'],
-            Surname: user['surname'],
-            Email: user['email'],
-            Role: user['role'],
-            PhoneNumber: user['phoneNumber'],
-            ProfilePicture: user['profile_picture'] ?? ''));
+            username: user['username'],
+            company: user['company'],
+            name: user['name'],
+            surname: user['surname'],
+            email: user['email'],
+            role: user['role'],
+            phoneNumber: user['phoneNumber'],
+            profilePicture: user['profile_picture'] ?? ''));
       }
       for (var user in body['username_matches']) {
         matchesByUsername.add(User(
-            Username: user['username'],
-            Company: user['company'] ?? '',
-            Name: user['name'] ?? '',
-            Surname: user['surname'] ?? '',
-            Email: user['email'] ?? '',
-            Role: user['role'] ?? '',
-            PhoneNumber: user['phoneNumber'] ?? '',
-            ProfilePicture: user['profile_picture'] ?? ''));
+            username: user['username'],
+            company: user['company'] ?? '',
+            name: user['name'] ?? '',
+            surname: user['surname'] ?? '',
+            email: user['email'] ?? '',
+            role: user['role'] ?? '',
+            phoneNumber: user['phoneNumber'] ?? '',
+            profilePicture: user['profile_picture'] ?? ''));
       }
       ret['username'] = matchesByUsername;
       ret['name'] = matchesByName;

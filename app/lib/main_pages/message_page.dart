@@ -12,7 +12,7 @@ class MessagePage extends StatelessWidget {
       appBar: AppBar(
         title: Obx(() {
           final user = controller.user.value;
-          return Text(user != null ? '${user.Name} ${user.Surname}' : 'Chat');
+          return Text(user != null ? '${user.name} ${user.surname}' : 'Chat');
         }),
       ),
       body: SafeArea(

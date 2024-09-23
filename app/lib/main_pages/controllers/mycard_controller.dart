@@ -48,7 +48,7 @@ class MyCardController extends GetxController {
         await cardProvider.getCards(cardProvider.auth.username.value) ??
             <Map<Platforms, String>>[];
     user.value = await userProvider.getUser(userProvider.auth.username.value);
-    imagePath.value = "$api_base_url$files/${user.value?.ProfilePicture}";
+    imagePath.value = "$api_base_url$files/${user.value?.profilePicture}";
     isLoading.value = false;
   }
 

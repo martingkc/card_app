@@ -24,14 +24,14 @@ class MessageProvider extends GetConnect {
         var message = element['last_message'];
         ret.add(
          Conversation(user:  User(
-              Company: user['company'] ?? '',
-              Username: user['username'],
-              Name: user['name'],
-              Surname: user['surname'],
-              Email: user['email'],
-              PhoneNumber: user['phoneNumber'],
-              ProfilePicture: user['profile_picture'],
-              Role: user['role']), 
+              company: user['company'] ?? '',
+              username: user['username'],
+              name: user['name'],
+              surname: user['surname'],
+              email: user['email'],
+              phoneNumber: user['phoneNumber'],
+              profilePicture: user['profile_picture'],
+              role: user['role']), 
               lastMessage: Message(emitter: message['issuer'], receiver: message['recipient'], body: message['body'], sentAt: message['timestamp']))
         );
       }

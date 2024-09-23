@@ -124,8 +124,8 @@ def new_user():
     company = request.json.get('company')
     name = request.json.get('name')
     surname = request.json.get('surname')
-    phnumber = request.json.get('number')
-    mail = request.json.get('mail')
+    phnumber = request.json.get('phone_number')
+    mail = request.json.get('email')
     role = request.json.get('role')
 
     if not username or not password:

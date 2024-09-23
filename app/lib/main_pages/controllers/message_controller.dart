@@ -28,16 +28,16 @@ class MessageController extends GetxController {
 
   Future<void> fetchMessages() async {
     messages.value =
-        await messageProvider.getUserMessages(user.value!.Username) ??
+        await messageProvider.getUserMessages(user.value!.username) ??
             <Message>[];
   }
 
   Future<void> sendMessage(String body) async {
-    var res = await messageProvider.sendMessage(user.value!.Username, body);
+    var res = await messageProvider.sendMessage(user.value!.username, body);
     if (res) {
       messages.add(Message(
         emitter: messageProvider.auth.username.value,
-        receiver: user.value!.Username,
+        receiver: user.value!.username,
         body: body,
         sentAt: DateTime.now().millisecondsSinceEpoch*100000,
       ));

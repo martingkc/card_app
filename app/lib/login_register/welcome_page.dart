@@ -14,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
             flex: 8,
             child: Container(
               color: Colors.blue[900], // Dark blue background
-              child: Center(
+              child: const Center(
                 child: Text(
                   '', // Empty placeholder for now, can add content here later
                   style: TextStyle(color: Colors.white),
@@ -41,14 +41,14 @@ class WelcomeScreen extends StatelessWidget {
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.black, // Black background
                           iconColor: Colors.white, // White text color
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.zero, // Square edges
                           ),
                         ),
                         onPressed: () {
                           Get.toNamed('/login');
                         },
-                        child: Text(
+                        child: const Text(
                           'Login',
                           style: TextStyle(
                             color: Colors.white,
@@ -58,15 +58,15 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
                     // Register Button (Flat, square edges)
                     SizedBox(
                       height: 50,
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.black, width: 1.5),
-                          shape: RoundedRectangleBorder(
+                          side: const BorderSide(color: Colors.black, width: 1.5),
+                          shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.zero, // Square edges
                           ),
                         ),
@@ -82,10 +82,7 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
-
-                    // Continue as Guest
-                   
+                    ),                   
                   ],
                 ),
               ),

@@ -97,16 +97,16 @@ class InboxPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: user.ProfilePicture != null && user.ProfilePicture!.isNotEmpty
-              ? NetworkImage("$api_base_url$files/${user.ProfilePicture!}")
+          backgroundImage: user.profilePicture != null && user.profilePicture!.isNotEmpty
+              ? NetworkImage("$api_base_url$files/${user.profilePicture!}")
               : null,
-          child: user.ProfilePicture == null || user.ProfilePicture!.isEmpty
+          child: user.profilePicture == null || user.profilePicture!.isEmpty
               ? Icon(Icons.person, size: 30, color: Colors.black)
               : null,
           backgroundColor: Colors.grey[200],
         ),
         title: Text(
-          '${user.Name ?? ''} ${user.Surname ?? ''}',
+          '${user.name ?? ''} ${user.surname ?? ''}',
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,

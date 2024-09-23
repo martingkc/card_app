@@ -115,13 +115,13 @@ class MyCardScreen extends StatelessWidget {
             return Column(
               children: [
                 Text(
-                  '${controller.user.value?.Name ?? ""} ${controller.user.value?.Surname ?? ""}', // Display name and surname
+                  '${controller.user.value?.name ?? ""} ${controller.user.value?.surname ?? ""}', // Display name and surname
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5),
                 // Display role and company
                 Text(
-                  '${controller.user.value?.Role ?? ""} at ${controller.user.value?.Company ?? ""}',
+                  '${controller.user.value?.role ?? ""} at ${controller.user.value?.company ?? ""}',
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
