@@ -8,7 +8,9 @@
 .buildlog/
 .history
 .svn/
+.DS_Store
 migrate_working_dir/
+db.sqlite
 
 # IntelliJ related
 *.iml
