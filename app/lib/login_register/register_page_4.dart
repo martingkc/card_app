@@ -101,7 +101,7 @@ class RegisterPage4 extends GetView<RegistrationController> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        Get.toNamed('/register_4');
+                        Get.toNamed('/register_5');
                       }
                     },
                     child: const Text(
