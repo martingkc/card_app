@@ -1,4 +1,4 @@
-from flask import request, jsonify, g, current_app, send_from_directory,url_for
+from flask import request, jsonify, g, current_app, send_from_directory, url_for,abort
 from werkzeug.utils import secure_filename
 from ..models import User, Platforms, Follow
 from ..utils import allowed_file
@@ -55,11 +55,47 @@ def get_vcf(filename):
     return send_from_directory(current_app.config['CONTACT_FOLDER'], filename, as_attachment=True)
 
 
+@user_bp.route("/get_username")
+def get_username():
+    request_body = request.get_json()
+    email =request_body["email"]
+    if email is None:
+        abort(400)
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        abort(404)
+
+    return {
+        jsonify({'username': user.username}), 200
+    }
+
+
+@user_bp.route("/validate_username_mail", methods = ['GET'])
+def validate_user():
+    request_body = request.get_json()
+    email = request_body.get("email")
+    username = request_body.get("username")
+
+    if email is None and username is None:
+        abort(400, description="Both email and username are missing")
+
+    query_by_username = User.query.filter_by(username=username).first()
+    query_by_email = User.query.filter_by(email=email).first()
+
+    email_exists = query_by_email is not None
+    username_exists = query_by_username is not None
+
+    return jsonify({
+        "email_exists": email_exists,
+        "username_exists": username_exists
+    })
+
 @user_bp.route('/users/<string:username>', methods=['GET'])
 def get_user(username):
     user = User.query.filter_by(username=username).first()
     if not user:
-        return 400
+        abort(400)
     return user.serialize()
 
 
@@ -68,7 +104,6 @@ def get_user(username):
 def follow_user():
     request_body = request.get_json()
     username = request_body['username']
-    print(username)
     user_to_add = User.query.filter_by(username=username).first()
     if not user_to_add:
         return (
@@ -129,9 +164,9 @@ def new_user():
     role = request.json.get('role')
 
     if not username or not password:
-        return 400
+        abort(400)
     if User.query.filter_by(username=username).first() is not None:
-        return 400
+        abort(400)
     user = User(
         username=username, name=name, surname=surname, fullname=name + ' ' + surname, email=mail,
         phoneNumber=phnumber, companyName=company, role=role
@@ -141,7 +176,7 @@ def new_user():
     db.session.commit()
     return (
         jsonify({'username': user.username}), 201,
-       #return also the url for the user 
+        # return also the url for the user
     )
 
 

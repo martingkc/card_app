@@ -1,4 +1,4 @@
-from flask import request, jsonify, g, url_for, current_app, send_from_directory,render_template
+from flask import request, jsonify, g, url_for, current_app, send_from_directory,render_template,abort
 from werkzeug.utils import secure_filename
 from ..models import ContactItems, User, Platforms
 from ..utils import allowed_file
@@ -19,7 +19,7 @@ def get_user(username):
     else:
         profile_picture_link = ""
     if not user:
-       return 404
+       abort(404)
 
 
     return render_template('card.html', 

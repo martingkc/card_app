@@ -68,7 +68,7 @@ class User(db.Model):
     name = db.Column(db.String(32), index=True)
     surname = db.Column(db.String(32), index=True)
     fullname = db.Column(db.String(65), index=True)
-    email = db.Column(db.String(32), index=True)
+    email = db.Column(db.String(32), index=True, primary_key=True)
     phoneNumber = db.Column(db.String(32), index=True)
     companyName = db.Column(db.String(32), index=True, nullable=True)
     password_hash = db.Column(db.String(128))
