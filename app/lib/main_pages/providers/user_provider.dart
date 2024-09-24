@@ -28,8 +28,8 @@ class UserProvider extends GetConnect {
 
   Future<Map<String, bool>?> validateCredentials(
       String username, String email) async {
-    var response = await get('$api_base_url$validate_username_mail',
-        query: {"username": "$username", "email": "$email"});
+    var response = await post('$api_base_url$validate_username_mail',
+        {"username": "$username", "email": "$email"});
     if (response.statusCode == 200 || response.statusCode == 201) {
       return {
         "email": response.body["email_exists"],

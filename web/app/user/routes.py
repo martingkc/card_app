@@ -71,7 +71,7 @@ def get_username():
     }
 
 
-@user_bp.route("/validate_username_mail", methods = ['GET'])
+@user_bp.route("/validate_username_mail", methods = ['POST'])
 def validate_user():
     request_body = request.get_json()
     email = request_body.get("email")
