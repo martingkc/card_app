@@ -141,7 +141,7 @@ def new_user():
     db.session.commit()
     return (
         jsonify({'username': user.username}), 201,
-        {'Location': url_for('get_user', username=username, _external=True)}
+       #return also the url for the user 
     )
 
 
