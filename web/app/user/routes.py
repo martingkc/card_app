@@ -59,7 +59,7 @@ def get_vcf(filename):
 def get_user(username):
     user = User.query.filter_by(username=username).first()
     if not user:
-        abort(400)
+        return 400
     return user.serialize()
 
 
@@ -129,9 +129,9 @@ def new_user():
     role = request.json.get('role')
 
     if not username or not password:
-        abort(400)
+        return 400
     if User.query.filter_by(username=username).first() is not None:
-        abort(400)
+        return 400
     user = User(
         username=username, name=name, surname=surname, fullname=name + ' ' + surname, email=mail,
         phoneNumber=phnumber, companyName=company, role=role

@@ -14,10 +14,12 @@ def get_user(username):
     contacts = ContactItems.query.filter_by(username=username).all()
     domain = current_app.config['DOMAIN']
 
-    profile_picture_link =  domain +"/api/files/"+ user.profile_picture
-
+    if user.profile_picture is not None : 
+        profile_picture_link =  domain +"/api/files/"+ user.profile_picture
+    else:
+        profile_picture_link = ""
     if not user:
-        abort(404)
+       return 404
 
 
     return render_template('card.html', 

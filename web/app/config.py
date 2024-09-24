@@ -9,4 +9,4 @@ class Config:
 
     ALLOWED_EXTENSIONS = {'xls', 'csv', 'png', 'jpeg', 'jpg'}
     MAX_CONTENT_LENGTH = 500 * 1000 * 1000  # 500 MB
-    DOMAIN = 'http://localhost:4999'
+    DOMAIN = 'http://15.237.248.215/'
