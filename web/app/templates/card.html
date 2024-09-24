@@ -253,7 +253,9 @@
   <div class="container">
     <!-- Profile Picture Section -->
     <div class="profile-img-container">
+      {% if profile_picture_url is not "" %}
       <img src="{{ profile_picture_url }}" alt="Profile Picture" class="profile-img">
+      {% endif%}
     </div>
 
     <!-- Profile Name and Description -->
