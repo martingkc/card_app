@@ -121,7 +121,7 @@ class LoginScreen extends GetView<LoginController> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Get.to(RegisterPage1());
+                            Get.offAndToNamed('/register_1');
                           },
                           child: Text(
                             'Don’t have an account? Register Now',

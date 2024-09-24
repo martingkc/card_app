@@ -10,7 +10,6 @@ class UserProvider extends GetConnect {
 
   Future<User?> getUser(String username) async {
     var response = await get('$api_base_url$users_endpoint/$username');
-    print(response.body.toString());
     if (response.statusCode == 200 || response.statusCode == 201) {
       return User(
           username: response.body['username'],
@@ -25,6 +24,19 @@ class UserProvider extends GetConnect {
     } else {
       return null;
     }
+  }
+
+  Future<Map<String, bool>?> validateCredentials(
+      String username, String email) async {
+    var response = await get('$api_base_url$validate_username_mail',
+        query: {"username": "$username", "email": "$email"});
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return {
+        "email": response.body["email_exists"],
+        "username": response.body["username_exists"]
+      };
+    }
+    return null; 
   }
 
   Future<bool> changeProfilePicture(File file) async {

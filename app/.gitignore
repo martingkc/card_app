@@ -32,6 +32,8 @@ db.sqlite
 .pub-cache/
 .pub/
 /build/
+/Downloads/
+/Contacts/
 /instance/
 
 # Symbolication related

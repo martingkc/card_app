@@ -1,5 +1,5 @@
 
-const String api_base_url = 'http://192.168.1.158:4999/';
+const String api_base_url = 'http://15.237.248.215/api/';
 const String register = 'add_user';
 const String login_endpoint = 'token';
 const String users_endpoint = 'users'; 
@@ -15,4 +15,5 @@ const String message = 'message';
 const String retrieve_chats = 'retrieve_chats';
 const String retrieve_messages = 'retrieve_messages';
 const String send = 'send'; 
+const String validate_username_mail = 'validate_username_mail';
 const int ttl = 600; 

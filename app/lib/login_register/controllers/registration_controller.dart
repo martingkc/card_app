@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:brachitek/main_pages/controllers/authentication_controller.dart';
 import 'package:brachitek/main_pages/providers/user_provider.dart';
 import 'package:brachitek/main_pages/providers/user_provider.dart';
+import 'package:brachitek/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 /// To implement
 /// profile picture upload
@@ -12,6 +17,10 @@ import 'package:get/get.dart';
 
 class RegistrationController extends GetxController {
   final userProvider = Get.find<UserProvider>();
+  final auth = Get.find<AuthenticationController>();
+  Rx<File?> profileImage = Rx<File?>(null);
+
+  RxBool isLoading = false.obs;
   RxString phoneNumber = ''.obs;
   RxString name = ''.obs;
   RxString surname = ''.obs;
@@ -27,6 +36,9 @@ class RegistrationController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmController =
+      TextEditingController();
 
   /// used for name, surname, city, company and role
   String? basicTextFieldValidator(String? value) {
@@ -79,8 +91,81 @@ class RegistrationController extends GetxController {
     return null;
   }
 
-  Future<void> registerUser() async {
-    //userProvider.addUser(user, password)
+  Future<bool> validateCredentials(String username, String email) async {
+    isLoading.value = true;
+    var response = await userProvider.validateCredentials(username, email);
+    isLoading.value = false;
+    if (response == null) {
+      Get.snackbar("Network Error", "Please retry later");
+      return false;
+    } else if (response["email"] == true && response["username"] == true) {
+      Get.snackbar("Invalid ", "Invalid Username and Mail");
+      return false;
+    } else if (response["email"] == true) {
+      Get.snackbar("Invalid ", "Invalid Mail");
+      return false;
+    } else if (response["username"] == true) {
+      Get.snackbar("Invalid ", "Invalid Username");
+      return false;
+    }
+    return true;
+  }
+
+  Future<bool> registerUser() async {
+    isLoading.value = true;
+    int? statusCode = await userProvider.addUser(
+        User(
+            username: usernameController.text,
+            name: nameController.text,
+            surname: surnameController.text,
+            email: emailController.text,
+            company: companyController.text,
+            role: roleController.text,
+            phoneNumber: phoneController.text),
+        passwordController.text);
+    isLoading.value = false;
+
+    if (statusCode == null) {
+      Get.snackbar("Network Error", "There has been an error try again later");
+      return false;
+    } else if (statusCode == 200 || statusCode == 202 || statusCode == 201) {
+      await auth.login(usernameController.text, passwordController.text);
+      return true;
+    } else {
+      Get.snackbar("Error", "There has been an error try again");
+      return false;
+    }
+  }
+
+  Future<bool> uploadProfilePicture(File file) async {
+    isLoading.value = true;
+    bool res = await userProvider.changeProfilePicture(file);
+    isLoading.value = false;
+
+    if (res) {
+      return true;
+    } else {
+      Get.snackbar("Error", "Could not upload picture");
+      return false;
+    }
+  }
+
+  String? usernameValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a username';
+    }
+    if (value.length > 10) {
+      return 'Usename must be shorter than 10 characters';
+    }
+    if (value.length < 5) {
+      return 'Usename must be longer than 5 characters';
+    }
+
+    RegExp regex = RegExp(r'^[a-zA-Z0-9_]+$');
+    if (!regex.hasMatch(value)) {
+      return 'Username can only contain letters, numbers, and underscores';
+    }
+    return null;
   }
 
   String? validatePassword(String? value) {
