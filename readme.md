@@ -13,7 +13,7 @@ Created almost a year ago during a free weekend not my best work.
 
 ## Notes
 
-- Messaging is based on periodic polling — real-time updates are **not** supported.
-- The project was more of a weekend experiment than a production-ready app.
+- Messaging is based on periodic polling rt updates are **not** supported.
+- The project was more of a weekend experiment than a production ready app.
 
 ---
