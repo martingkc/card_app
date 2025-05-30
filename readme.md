@@ -1,4 +1,19 @@
-Simple Contact sharing app made using Flutter (GETX) and Flask.
-Made it almost a year ago on a free weekend. Not my best. 
+# Contact Sharing App
 
-Users can search for other users, follow them and message them. Each user can set their profile pictures and customize their cards to their liking. The messaging is done through rest polling so not optimal at all. 
+A simple contact-sharing app built using **Flutter (GETX)** and **Flask**.  
+Created almost a year ago during a free weekend not my best work.
+
+## Features
+
+- 🔍 Search for other users and visualize their contact cards  
+- ➕ Follow users and send messages  
+- 🖼️ Set profile pictures and customize contact cards  
+- 💬 Messaging via REST polling (not optimal)  
+- 🌐 Public user pages rendered on the backend using Jinja templates
+
+## Notes
+
+- Messaging is based on periodic polling — real-time updates are **not** supported.
+- The project was more of a weekend experiment than a production-ready app.
+
+---
